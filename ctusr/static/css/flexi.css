@@ -1,0 +1,87 @@
+.top-buffer { margin-top: 3em; }
+.row-eq-height {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+}
+.item-of-interest:hover {
+    background: #e3f2fd;
+}
+a.deco-none {
+    color: inherit;
+    text-decoration: inherit;
+}
+a.deco-none:link {
+    color: inherit;
+    text-decoration: inherit;
+}
+a.deco-none:hover {
+    color: inherit;
+    text-decoration: inherit;
+}
+.over-info-bar {
+    margin-bottom: 0;
+}
+.info-bar {
+    margin-bottom: 30px;
+    border-width: 1px;
+    border-color: #eee;
+    border-style: none none solid none;
+    box-shadow: 0 2px 2px rgba(238, 238, 238, 0.8);
+    width: 100%;
+}
+.filter-crumbs {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+.filter-crumb {
+    margin-right: 0.5em;
+}
+.filter-crumb .btn {
+    background: #777;
+    color: white;
+    border-color: white;
+}
+.vertical-center {
+    vertical-align: middle;
+}
+.table > tbody > tr.vcenter-body > td,th {
+    vertical-align: middle;
+}
+.btn-outline {
+    background-color: transparent;
+    color: inherit;
+    transition: all .5s;
+}
+.asteriskField {
+    display: none;
+}
+.control-group {
+    padding-bottom: 1em;
+}
+.table-panel > .panel-body {
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 4em;
+    padding-bottom: 4em;
+}
+.table-panel > .panel-body {
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+table.user-data {
+    width: auto;
+    table-layout: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+table.user-data th {
+    width: 14em;
+}
+.panel-body .btn {
+    margin-left: auto;
+    margin-right: auto;
+}

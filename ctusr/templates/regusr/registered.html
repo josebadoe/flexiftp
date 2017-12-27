@@ -1,0 +1,49 @@
+{% extends 'regusr/base.html' %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title_block %}
+    Registra de nuevo usuario
+{% endblock %}
+
+{% block content %}
+    <div class="row top-buffer">
+        <div class="panel panel-success table-panel">
+            <div class="panel-heading">Usuario registrado exitosamente</div>
+            <div class="panel-body">
+                <table class="table user-data table-bordered">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Servidor&nbsp;FTP:</th>
+                            <td>{{ server_ip }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Nombre&nbsp;del&nbsp;usuario:</th>
+                            <td>{{ login }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Contraseña:</th>
+                            <td>{{ pw }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Vencimiento:</th>
+                            <td>{{ expires|date:"l, d/m/Y" }}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                {% for ln in description %}
+                                    <p>{{ ln }}</p>
+                                {% endfor %}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="text-center">
+                    <form action="{% url 'register' %}" method="get">
+                        <button type="submit" name="next" value="cleanup" class="btn btn-primary">Registrar otro</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

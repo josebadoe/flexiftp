@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head lang="es">
+        <meta charset="UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>
+            {% block title_block %}
+                Gestor de usuarios FTP
+            {% endblock %}
+        </title>
+        <link href="{% static "bootstrap-3.3.7/css/bootstrap.min.css" %}" rel="stylesheet">
+        <link href="{% static "font-awesome-4.7.0/css/font-awesome.min.css" %}" rel="stylesheet">
+        <link href="{% static "img/favicon.ico" %}" rel="icon" type="image/x-icon">
+
+        <link href="{% static "css/flexi.css" %}" rel="stylesheet">
+
+        <script src="{% static "jquery-3.2.0.min.js" %}"></script>
+        <script src="{% static "tether.min.js" %}"></script>
+        <script src="{% static "bootstrap-3.3.7/js/bootstrap.min.js" %}"></script>
+        <script type="text/javascript" charset="utf-8">
+         $(document).ready(function() {
+              var pathname = "{{ current_path_base }}";
+              $('.nav > li > a[href="'+pathname+'"]').first().parent().addClass('active');
+
+              $('ul.nav li.dropdown').hover(function() {
+                   $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+              }, function() {
+                   $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+              });
+         });
+         function activate_popovers(elt) {
+              // setup tooltip & popover
+              // $('[data-toggle="tooltip"]').tooltip();
+              // $('[data-toggle="popover"]').popover({ trigger: 'focus' });
+              $('[data-toggle="popover"]', elt).each(function() {
+                   var content_id = $(this).attr('data-content-id');
+                   var a = {};
+                   if (!$(this).attr('data-trigger')) {
+                        a.trigger = 'focus';
+                        a.delay = { show: 250, hide: 0 };
+                   }
+                   if (!$(this).attr('data-html'))
+                        a.html = true;
+                   if (content_id)
+                        a.content = $(content_id);
+                   a.container = 'body';
+                   $(this).popover(a);
+              });
+         }
+         $(document).ready(activate_popovers);
+        </script>
+        {% block javascript %}
+        {% endblock %}
+    </head>
+    <body>
+        <!-- <div class="jumbotron over-info-bar text-center">
+             <h1>{{ page_title }}</h1>
+             <div class="text-center">
+             <span class="h4">alma<br/></span>
+             <span class="h6">bab</span>
+             </div>
+             </div> -->
+
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>

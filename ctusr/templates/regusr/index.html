@@ -1,0 +1,24 @@
+{% extends 'regusr/base.html' %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title_block %}
+    Registrar un nuevo usuario
+{% endblock %}
+
+{#% with page_title="Registro de nuevo usuario" %#}
+    {#{ page_title_block.super }#}
+{#% endwith %#}
+
+{% block content %}
+    <div class="row top-buffer">
+        <div class="panel panel-default">
+            <div class="panel-heading">Por favor identifique en corto y describa el tema de su upload.</div>
+            <div class="panel-body">
+                <form action="{{ request.path }}" method="post">
+                    {% crispy form %}
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
