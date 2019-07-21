@@ -8,7 +8,6 @@ import re
 import sqlite3
 import string, random
 import shutil
-from ctusr import settings
 
 class Server:
     def __init__(self, dbfile):
