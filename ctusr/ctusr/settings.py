@@ -51,7 +51,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
+#    'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -69,7 +69,7 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
+                #'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 # 'django.contrib.auth.context_processors.auth',
                 # 'django.contrib.messages.context_processors.messages',
@@ -122,6 +122,8 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
+SITE_ROOT = os.environ.get('SITE_ROOT', '')
+
 LANGUAGE_CODE = 'es-do'
 
 TIME_ZONE = 'America/Santo_Domingo'
@@ -136,7 +138,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '%s/static/' % SITE_ROOT
 
 STATICFILES_DIRS = [
     STATIC_DIR
