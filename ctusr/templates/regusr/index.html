@@ -15,9 +15,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">Por favor identifique en corto y describa el tema de su upload.</div>
             <div class="panel-body">
-                <form action="{{ request.path }}" method="post">
-                    {% crispy form %}
-                </form>
+                {% crispy form %}
             </div>
         </div>
     </div>

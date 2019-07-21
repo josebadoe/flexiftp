@@ -2,17 +2,20 @@ import os
 import getpass
 import socket
 import re
+import unicodedata
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.template import Template, Context
 from django.conf import settings
+from django.views.decorators import cache
 from .forms import UploadForm
 from datetime import date, datetime, timedelta
 import urllib.parse
 
 # required: django-crispy-forms
 
+@cache.never_cache
 def index(request):
     if request.method == 'GET' and request.GET.get('next') == 'cleanup':
         response = HttpResponseRedirect(reverse('register'))
@@ -21,18 +24,22 @@ def index(request):
 
     if request.COOKIES.get('user'):
         return go_to_registered()
-    context_dict = dict()
+
     if request.method == 'POST':
         form = UploadForm(request.POST)
         if form.is_valid():
-            (login, pw, descr) = register(form.cleaned_data['name'],
+            login = ''.join([
+                c
+                for c in unicodedata.normalize('NFD', form.cleaned_data['name'])
+                if unicodedata.category(c) != 'Mn'])
+            (login, pw, descr) = register(login,
                                           get_client_id(request),
                                           form.cleaned_data['description'])
             return go_to_registered(login, pw, descr)
     else:
         form = UploadForm()
-    context_dict['form'] = form
-    return render(request, 'regusr/index.html', context=context_dict)
+
+    return render(request, 'regusr/index.html', context={ 'form': form })
 
 
 def go_to_registered(*args):
@@ -98,6 +105,7 @@ def register(upload_id, client, description):
     return (*resp, description)
 
 
+@cache.never_cache
 def registered(request):
     request.session
     if not request.COOKIES.get('user'):
